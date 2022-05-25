@@ -54,4 +54,25 @@ export class LinkedList {
 
     this.length--;
   }
+
+  indexOf(value: string) {
+    let currentNode = this.headNode;
+    let index = -1;
+
+    while (currentNode) {
+      index++;
+
+      if (currentNode.value === value) {
+        return index;
+      }
+
+      currentNode = currentNode.next;
+    }
+
+    if (currentNode.value === value) {
+      return index;
+    } else {
+      while (currentNode.next) {}
+    }
+  }
 }
