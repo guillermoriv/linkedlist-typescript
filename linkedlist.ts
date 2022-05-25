@@ -12,13 +12,18 @@ export class NodeBase {
 
 export class LinkedList {
   length: number;
-  head: NodeBase;
+  headNode: NodeBase;
 
-  add(value: any): void {
-    if (this.head === null) {
-      this.head = new NodeBase(value);
+  constructor() {
+    this.length = 0;
+    this.headNode = null;
+  }
+
+  add(value: string): void {
+    if (this.headNode === null) {
+      this.headNode = new NodeBase(value);
     } else {
-      let currentNode = this.head;
+      let currentNode = this.headNode;
 
       while (currentNode.next) {
         currentNode = currentNode.next;
@@ -29,5 +34,24 @@ export class LinkedList {
     }
 
     this.length++;
+  }
+
+  remove(value: string) {
+    let currentNode = this.headNode;
+    let previousNode;
+
+    if (currentNode.value === value) {
+      this.headNode = currentNode.next;
+    } else {
+      while (currentNode.value !== value) {
+        previousNode = currentNode;
+        currentNode = currentNode.next;
+      }
+
+      // When the loop is over, then we finded the value, and we set the previousNode.next to the currentNode.next
+      previousNode.next = currentNode.next;
+    }
+
+    this.length--;
   }
 }
